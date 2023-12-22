@@ -10,5 +10,4 @@ function component() {
 }
 
 document.body.appendChild(component());
-index.html
 

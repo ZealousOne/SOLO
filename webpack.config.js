@@ -1,4 +1,4 @@
-const webpack = require(“webpack”);
+const webpack = require('webpack');
 const path = require('path');
   const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -21,6 +21,10 @@ const path = require('path');
       path: path.resolve(__dirname, 'dist'),
       clean: true,
     },
+    // added the below to try to contain valid alias configuration
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
+    }
   };
 
 
