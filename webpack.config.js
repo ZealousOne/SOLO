@@ -11,7 +11,9 @@ module.exports = {
 
   devtool : 'inline-source-map',
   devServer : {
-    static: './dist',
+    static: {
+      directory: path.join(__dirname, './dist'),
+    },
     host: 'localhost',
     port: 8080,
   },
@@ -21,7 +23,7 @@ module.exports = {
     }),
   ],
   output : {
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '/',
