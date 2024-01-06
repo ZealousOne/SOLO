@@ -6,17 +6,15 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+// App.js
+// import React from 'react';
+
 const App = () => {
-
-
   return (
     <div>
-      <h1>test</h1>
-      {/* <Box boxState={boxState}boxState={boxState} handleClick={updateState}/> */}
-      <Row/>
+      <h1>Hello, React!</h1>
     </div>
   );
 };
 
-const root = createRoot(document.querySelector('#root'));
-root.render(<App />,);
+export default App;

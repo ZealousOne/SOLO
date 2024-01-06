@@ -21,6 +21,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
     }),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3000,
+      proxy: 'http://localhost:8080/',
+      reload: false,
+      injectCss: true,
+    }),
   ],
   output : {
     filename: 'bundle.js',
@@ -41,44 +48,22 @@ module.exports = {
         },
       },
     ],
-  }
-}
-
-
-// older code 
-
-// export const mode = 'development';
-// export const entry = {
-//   index: './index.js'
-// };
-// export const devtool = 'inline-source-map';
-// export const devServer = {
-//   static: './dist',
-//   host: 'localhost',
-//   port: 8080,
-// };
-// export const plugins = [
-//   new HtmlWebpackPlugin({
-//     title: 'Development',
-//   }),
-// ];
-// export const output = {
-//   filename: '[name].bundle.js',
-//   path: resolve(__dirname, 'dist'),
-//   clean: true,
-//   publicPath: '/',
-// };
-// export const module = {
-//   rules: [
-//     {
-//       test: /\.(js|jsx)$/,
-//       exclude: /node_modules/,
-//       use: {
-//         loader: 'babel-loader',
-//         options: {
-//           presets: ['@babel/preset-env', '@babel/preset-react'],
-//         },
-//       },
-//     },
-//   ],
-// };
+  },
+  resolve: {
+    fallback: {
+      assert: require.resolve('assert/'),
+      async_hooks: require.resolve('async_hooks/'),
+      net: require.resolve('net/'),
+      path: require.resolve('path-browserify'),
+      querystring: require.resolve('querystring-es3'),
+      crypto: require.resolve('crypto-browserify'),
+      fs: false,
+      stream: require.resolve('stream-browserify'),
+      http: require.resolve('stream-http'),
+      util: require.resolve('util/'),
+      url: require.resolve('url/'),
+      buffer: require.resolve('buffer/'),
+      zlib: require.resolve('browserify-zlib'),
+    },
+  },
+};
