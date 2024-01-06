@@ -2,31 +2,39 @@
 // import HtmlWebpackPlugin from 'html-webpack-plugin';
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require("dotenv-webpack"); 
 
 module.exports = {
-  mode :'development',
+  // updated to reference package.json and change depending on run
+  mode : process.env.NODE_ENV,
   entry : {
-    index: './index.js'
+    index: path.join(__dirname, "src", "index.js")
   },
 
-  devtool : 'inline-source-map',
+  // devtool : 'inline-source-map',
   devServer : {
     static: {
       directory: path.join(__dirname, './dist'),
+      publicPath: '/'
     },
     host: 'localhost',
     port: 8080,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   },
    plugins : [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       title: 'Development',
+      template: path.join(__dirname, "src", "index.html"),
     }),
   ],
   output : {
-    filename: 'bundle.js',
+    // filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
-    publicPath: '/',
+    // clean: true,
+    // publicPath: '/',
   },
   module : {
     rules: [
@@ -41,7 +49,10 @@ module.exports = {
         },
       },
     ],
-  }
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
 }
 
 

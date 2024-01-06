@@ -1,21 +1,20 @@
-import _ from 'lodash';
+import { createRoot } from 'react-dom/client';
+// const createRoot = require('react-dom/client');
+// Clear the existing HTML content
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MyComponent from './MyComponent'; // Import your component
+import App from './app.jsx';
 
-// commented out to work on react
-//  function component() {
-//    const element = document.createElement('div');
-//   const btn = document.createElement('button');
+console.log('inside index.js');
 
-//    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+ReactDOM.render(<App />, document.getElementById('app'));
 
-//   btn.innerHTML = 'Click me and check the console!';
-//   btn.onclick = printMe;
 
-//   element.appendChild(btn);
 
-//    return element;
-//  }
 
- document.body.appendChild(component());
+
+// document.body.innerHTML = '<div id="app"></div>';
+
+// // Render your React component instead
+// const root = createRoot(document.getElementById('app'));
+// root.render(<h1>Hello, world</h1>);
